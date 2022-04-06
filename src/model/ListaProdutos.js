@@ -1,4 +1,4 @@
-class ListaProdutos {
+export default class ListaProdutos {
 
       constructor() {
             this._produtos = [];
