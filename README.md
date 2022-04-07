@@ -8,7 +8,10 @@
 - Instalação de algumas dependências para auxiliar no desenvolvimento
       - Instalação do JEST, ferramenta de teste para Javascript
       - Instalção do Sucrase, para utilizar o import e export de funções e classes
-
+      - Compilação do javascript do servidor para um diretório 'public', nomeado de dist
+- Uso da manipulação de arrays com Javascript
+      - Funções reduce, map e forEach foram muito esploradas nesse exercício
+- Criação do meu primeiro teste unitário
 ## Como compilar e rodar os testes da aplicação
 
 Rode o comando abaixo (Linux and MacOS):

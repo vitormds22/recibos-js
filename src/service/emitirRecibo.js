@@ -1,13 +1,22 @@
-import Produto from '../model/Produto';
-import ListaProdutos from '../model/ListaProdutos';
-
-let listaProdutos = new ListaProdutos;
-const celular = new Produto('Celular', 1, 350000);
-const capa_protetora  = new Produto('Capa protetora', 1000, 500);
-
-listaProdutos.adiciona(celular);
-listaProdutos.adiciona(capa_protetora);
-
-export default function emitirRecibo(listaProdutos) {
-      console.log(listaProdutos);
+export default function emitirRecibo(listaProdutos, listaPagantes) {
+      console.log(listaProdutos.produtos);
+     
+      var totalCompraProduto = listaProdutos.produtos.map(function(produto) {
+           return produto.valor * produto.quantidade;
+      })
+      
+      const valorInicial = 0;
+      let totalValorProdutos = totalCompraProduto.reduce(
+            (valorAnterior, valorAtual) => valorAnterior + valorAtual, valorInicial
+      );
+      
+      let divisaoValorPorPagantes = totalValorProdutos / listaPagantes.length;
+      let recibo = [];
+      // if(listaPagantes.length % 3 === 0) {
+      //       divisaoValorPorPagantes =+ 0.01
+      // }
+      listaPagantes.forEach(function(email){
+            recibo.push({pagante: email, valor: divisaoValorPorPagantes})
+      });
+      console.log(recibo);
 }
