@@ -12,6 +12,8 @@
 - Uso da manipulação de arrays com Javascript
       - Funções reduce, map e forEach foram muito esploradas nesse exercício
 - Criação do meu primeiro teste unitário
+- Ajustando a função para adicionar o resto da divisão do valor total em um dos itens do array
+
 ## Como compilar e rodar os testes da aplicação
 
 Rode o comando abaixo (Linux and MacOS):
