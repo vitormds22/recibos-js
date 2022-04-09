@@ -1,19 +1,20 @@
 import Produto from '../src/model/Produto';
 import ListaProdutos from '../src/model/ListaProdutos';
 import Recibo from '../src/service/Recicbo';
+import CalculadoraConta from '../src/service/CalculadoraConta'
 
 test('Valor total distribuído entre os pagantes quando o resto da divisão não for zero', () => {
       let listaProdutos = new ListaProdutos;
       let recibo = new Recibo;
       const espaguete = new Produto('Espaguete', 1, 20000);
 
-      let listaPagantes = [{email: 'roger@mail.com', value:0}, {email: 'wanda@mail.com', value:0},{email: 'fran@mail.com', value:0}];
+      let listaPagantes = [{email: 'roger@mail.com', valor:0}, {email: 'wanda@mail.com', valor:0},{email: 'fran@mail.com', valor:0}];
 
       listaProdutos.adiciona(espaguete);
       
       let result = recibo.emitirRecibo(listaProdutos, listaPagantes);
 
-      expect(result).toEqual([{email: 'roger@mail.com', value:'$66,67'}, {email: 'wanda@mail.com', value:'$66,67'},{email: 'fran@mail.com', value:'$66,66'}]);
+      expect(result).toEqual([{email: 'roger@mail.com', valor:'$66,67'}, {email: 'wanda@mail.com', valor:'$66,67'},{email: 'fran@mail.com', valor:'$66,66'}]);
 });
 
 test('Valor total distribuído entre os pagantes quando a divisão for exata', () => {
@@ -21,15 +22,16 @@ test('Valor total distribuído entre os pagantes quando a divisão for exata', (
       let recibo = new Recibo;
       const espaguete = new Produto('Espaguete', 1, 90);
 
-      let listaPagantes = [{email: 'roger@mail.com', value:0}, {email: 'wanda@mail.com', value:0},{email: 'fran@mail.com', value:0}];
+      let listaPagantes = [{email: 'roger@mail.com', valor:0}, {email: 'wanda@mail.com', valor:0},{email: 'fran@mail.com', valor:0}];
 
       listaProdutos.adiciona(espaguete);
       
       let result = recibo.emitirRecibo(listaProdutos, listaPagantes);
 
-      expect(result).toEqual([{email: 'roger@mail.com', value:30}, {email: 'wanda@mail.com', value:30},{email: 'fran@mail.com', value:30}]);
+      expect(result).toEqual([{email: 'roger@mail.com', valor:30}, {email: 'wanda@mail.com', valor:30},{email: 'fran@mail.com', valor:30}]);
 });
-test('Valor total distribuído entre os pagantes quando a divisão for exata', () => {
+
+test('Valor total distribuído entre os pagantes quando o total do valor dos produtos for alto', () => {
       let listaProdutos = new ListaProdutos;
       let recibo = new Recibo;
       const espaguete = new Produto('Espaguete', 1, 3850);
@@ -39,10 +41,10 @@ test('Valor total distribuído entre os pagantes quando a divisão for exata', (
       const bife_angus = new Produto('Bife Angus', 1, 6890);
 
       let listaPagantes = [
-            {email: 'roger@mail.com', value:0}, 
-            {email: 'wanda@mail.com', value:0}, 
-            {email: 'fran@mail.com', value:0}, 
-            {email: 'gabriel@mail.com', value:0}
+            {email: 'roger@mail.com', valor:0}, 
+            {email: 'wanda@mail.com', valor:0}, 
+            {email: 'fran@mail.com', valor:0}, 
+            {email: 'gabriel@mail.com', valor:0}
       ];
 
       listaProdutos.adiciona(espaguete);
@@ -53,5 +55,10 @@ test('Valor total distribuído entre os pagantes quando a divisão for exata', (
       
       let result = recibo.emitirRecibo(listaProdutos, listaPagantes);
 
-      expect(result).toEqual([{email: 'roger@mail.com', value:30}, {email: 'wanda@mail.com', value:30},{email: 'fran@mail.com', value:30}]);
+      console.log(result);
+      expect(result).toEqual([{email: 'roger@mail.com', valor:'$55,80'}, {email: 'wanda@mail.com', valor:'$55,80'},{email: 'fran@mail.com', valor:'$55,80'},{email: 'gabriel@mail.com', valor:'$55,80'}]);
 });
+
+test('', () => {
+      
+})

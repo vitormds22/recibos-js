@@ -18,7 +18,7 @@ export default class Recibo {
             let resto = totalValorProdutos % quantidadePagantes;
 
             listaPagantes.forEach((pagante) => {
-                  pagante.value = divisaoExata
+                  pagante.valor = divisaoExata
             });
             
             if (resto === 0) {
@@ -26,7 +26,7 @@ export default class Recibo {
             }
 
             for(var i = 0; i < resto; i++) {
-                  listaPagantes[i].value++
+                  listaPagantes[i].valor++
             }
 
             return this.transformer.transform(listaPagantes);
