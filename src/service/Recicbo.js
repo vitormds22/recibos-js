@@ -10,7 +10,7 @@ export default class Recibo {
 
       emitirRecibo(listaProdutos, listaPagantes) {
 
-            let totalValorProdutos = this.calculadora.getTotalProducts(listaProdutos)
+            let totalValorProdutos = this.calculadora.getTotalValorProdutos(listaProdutos)
             
             let quantidadePagantes = listaPagantes.length;
 

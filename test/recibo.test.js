@@ -1,8 +1,8 @@
 import Produto from '../src/model/Produto';
 import ListaProdutos from '../src/model/ListaProdutos';
 import Recibo from '../src/service/Recicbo';
-import CalculadoraConta from '../src/service/CalculadoraConta'
-
+import CalculadoraConta from '../src/service/CalculadoraConta';
+import Transformer from '../src/service/Transformer';
 test('Valor total distribuído entre os pagantes quando o resto da divisão não for zero', () => {
       let listaProdutos = new ListaProdutos;
       let recibo = new Recibo;
@@ -59,6 +59,40 @@ test('Valor total distribuído entre os pagantes quando o total do valor dos pro
       expect(result).toEqual([{email: 'roger@mail.com', valor:'$55,80'}, {email: 'wanda@mail.com', valor:'$55,80'},{email: 'fran@mail.com', valor:'$55,80'},{email: 'gabriel@mail.com', valor:'$55,80'}]);
 });
 
-test('', () => {
-      
+test('Valor total por quantidade de produtos no array', () => {
+      let calculadoraConta = new CalculadoraConta();
+      let listaProdutos = new ListaProdutos;
+      const espaguete = new Produto('Espaguete', 10, 500);
+      const nhoque = new Produto('Nhoque', 5, 500)
+
+      listaProdutos.adiciona(espaguete);
+      listaProdutos.adiciona(nhoque);
+
+      let result = calculadoraConta.getTotal(listaProdutos);
+      let toBeArray = [5000, 2500];
+
+      expect(result).toStrictEqual(toBeArray);
+})
+
+test('Testando o retorno do valor total dos produtos', () => {
+      let calculadoraConta = new CalculadoraConta();
+      let listaProdutos = new ListaProdutos;
+      const espaguete = new Produto('Espaguete', 10, 500);
+      const nhoque = new Produto('Nhoque', 5, 500)
+
+      listaProdutos.adiciona(espaguete);
+      listaProdutos.adiciona(nhoque);
+
+      let result = calculadoraConta.getTotalValorProdutos(listaProdutos);
+
+      expect(result).toBe(7500);
+})
+
+test('Manipulação da máscara de saída do recibo utilzando o currency js', () => {
+      let transformer = new Transformer();
+      let listaPagantes = [{email: 'roger@mail.com', valor:3500}];
+
+      let result = transformer.transform(listaPagantes);
+
+      expect(result).toStrictEqual([{email: 'roger@mail.com', valor:'$35,00'}])
 })

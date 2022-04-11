@@ -1,5 +1,5 @@
 export default class CalculadoraConta {
-      getTotalProducts (listaProdutos) {
+      getTotalValorProdutos (listaProdutos) {
           let valorInicial = 0;
   
           let totalCompraProduto = this.getTotal(listaProdutos)
@@ -9,7 +9,7 @@ export default class CalculadoraConta {
           );
       }
     
-       getTotal (listaProdutos) {
+      getTotal (listaProdutos) {
           return listaProdutos.produtos.map((produto) => {
                 return produto.valor * produto.quantidade;
           })
